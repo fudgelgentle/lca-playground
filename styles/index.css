@@ -3,6 +3,82 @@ body {
   font-family: "Inter", sans-serif;
 }
 
+.lexend {
+  font-family: "Lexend", sans-serif;
+}
+.lca-viz-header {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: #D3EDE5;
+  /* top, right, bottom, left */
+  border-radius: 8px 8px 0 0;
+  justify-content: space-between;
+  cursor: grab;
+}
+.lca-viz-raw-material-title {
+  margin-top: 40px;
+}
+.lca-viz-header-title {
+  margin-left: 4px;
+}
+.flex-center {
+  display: flex;
+  align-items: center;
+}
+.cg-8 {
+  column-gap: 8px;
+}
+.cg-12 {
+  column-gap: 12px;
+}
+.pd-12 {
+  padding: 12px;
+}
+#lca-viz-map {
+  position: absolute;
+  /* border: 2px solid #ccc; */
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  z-index: 999999;
+  background-color: white;
+  padding: 20px;
+  /* pointer-events: none; */
+  max-width: 600px;
+  padding-top: 64px; /* Add enough padding for the header */
+}
+#lca-viz-carbon-chart {
+  max-width: 420px;
+  max-height: 240px;
+  margin-bottom: 16px;
+  margin-top: 16px;
+}
+.lca-viz-slider-container {
+  width: 100%;
+  text-align: center;
+}
+#lca-viz-parameter {
+  cursor: ew-resize;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  text-decoration: underline dotted;
+}
+#lca-viz-close-map {
+}
+.lca-viz-close-button {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+.lca-viz-close-button svg {
+  width: 24px;
+  height: 24px;
+  stroke: #000;
+}
+
 section {
   background-color: #eaf4f4;
   padding: 20px;
@@ -11,6 +87,10 @@ section {
   margin-bottom: 3em;
 }
 
+#google-maps-air, #google-maps-ground {
+  width: 300px;
+  height: 150px;
+}
 
 /* box-shadow: [offset-x] [offset-y] [blur-radius] [spread-radius] [color]; */
 
@@ -155,26 +235,6 @@ section {
   width: 0.7em;
   height: 0.7em;
 }
-.icon-16 {
-  width: 16px;
-  height: 16px;
-}
-.icon-20 {
-  width: 20px;
-  height: 20px;
-}
-.icon-24 {
-  width: 24px;
-  height: 24px;
-}
-.em-small {
-  width: 0.7em;
-  height: 0.7em;
-}
-.em-regular {
-  width: 1em;
-  height: 1em;
-}
 .inactive {
   cursor: not-allowed;
   background-color: #F5F5F5;
@@ -196,3 +256,400 @@ section {
   background-color: #F2FFF9;
 }
 /* ! For article 2 designs only */
+
+.icon-16 {
+  width: 16px;
+  height: 16px;
+}
+.icon-20 {
+  width: 20px;
+  height: 20px;
+}
+.icon-24 {
+  width: 24px;
+  height: 24px;
+}
+.em-small {
+  width: 0.7em;
+  height: 0.7em;
+}
+.em-regular {
+  width: 1em;
+  height: 1em;
+}
+
+.lca-viz-yes-no-container {
+  display: inline-flex;
+  flex-wrap: nowrap;
+  border: 1.5px solid #52B788;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.lca-viz-yes-button {
+  border-right: 1.5px solid #52B788;
+  /* border-radius: 8px 0 0 8px; */
+}
+
+.lca-viz-no-button {
+  border: none;
+  /* border-radius: 0 8px 8px 0; */
+}
+
+.lca-viz-yes-button, .lca-viz-no-button {
+  display: block;
+  background-color: white;
+  /* top, right, bottom, left */
+  padding: 4px 12px 4px 12px;
+  cursor: pointer;
+}
+
+.lca-viz-yes-button.selected, .lca-viz-no-button.selected {
+  background-color: #52B788;
+  transition: all 0.3s;
+}
+
+.lca-viz-number-input {
+  border: 1.5px solid #52B788;
+  border-radius: 8px;
+  /* top, right, bottom, left */
+  padding: 8px 12px 8px 12px;
+  width: 32px;
+  font-family: "Inter", sans-serif;
+}
+
+.lca-mark {
+  background-color: #EEF2F0;
+}
+
+.test-input {
+  display: flex;
+  flex-wrap: nowrap;
+  field-sizing: content;
+}
+
+.div-c {
+  field-sizing: content;
+}
+
+.pd-4 {
+  padding: 4px;
+}
+.pd-8 {
+  padding: 8px;
+}
+.fz-16 {
+  font-size: 16px;
+}
+
+
+
+/* * CSS Rule for the up-and-down btn ONLY */
+/* .lca-viz-param-container > * {
+  margin-top: 12px;
+}
+.lca-viz-param {
+  justify-content: space-between;
+  background-color: #EEF2F0;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.lca-viz-special-text-container-2 {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  column-gap: 4px;
+  user-select: none
+}
+.lca-viz-special-text-2 {
+  display: flex;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 4px;
+  align-items: center;
+  gap: 10px;
+}
+.lca-viz-up-down-btn-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+}
+.lca-viz-up-down-btn {
+  padding: 0px 6px 0px 6px;
+  box-shadow: 0px 0.5px 3px 0px rgba(0, 0, 0, 0.25);
+  line-height: 1.2;
+}
+.lca-viz-active {
+  cursor: pointer;
+  background-color: white;
+  color: #39805F;
+}
+.lca-viz-active:hover {
+  background-color: #ddf2e8;
+  transition: 0.5s all;
+}
+.lca-viz-inactive {
+  cursor: not-allowed;
+  background-color: #F5F5F5;
+  color: grey;
+}
+.lca-viz-inactive-st {
+  background-color: #F5F5F5;
+}
+.lca-viz-active-st {
+  background-color: white;
+}
+.lca-viz-up-down-btn-container .lca-viz-up-down-btn svg {
+  width: 0.7em;
+  height: 0.7em;
+}
+.lca-viz-eye-off, .lca-viz-eye-on {
+  color: #39805F;
+  padding: 5px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.lca-viz-eye-off {
+  background-color: #F5F5F5;
+}
+.lca-viz-em-regular {
+  width: 1em;
+  height: 1em;
+}
+.lca-viz-display-chart-btn {
+  width: 1.5em;
+  height: 1.5em;
+} */
+/* * CSS Rule for the up and down btn ONLY */
+
+
+.lca-viz-unit-container {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  overflow: hidden;
+}
+.lca-viz-unit-div {
+  /* display: none; */
+  position: absolute;
+  width: 100%;
+  opacity: 0;
+}
+
+@keyframes rollIn {
+  0% {
+    transform: translateY(-20px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    transform: translateY(0px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(20px);
+    opacity: 0;
+  }
+}
+
+/* animation classes */
+.lca-viz-unit-div.show {
+  display: block;
+  animation: rollIn 0.5s forwards;
+}
+.lca-viz-unit-div.hide {
+  animation: fadeOut 0.5s forwards;
+}
+.inline {
+  display: inline;
+}
+.flex-column {
+  flex-direction: column;
+}
+
+
+
+/* * CSS Rule for the OLD up-and-down btn ONLY */
+/* .lca-viz-param {
+  justify-content: space-between;
+  background-color: #EEF2F0;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.lca-viz-special-text-container-2 {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  column-gap: 5px;
+  user-select: none
+}
+.lca-viz-special-text-2 {
+  display: flex;
+  outline: 2px solid #39805F;
+  border-radius: 5px;
+  padding: 5px 5px 5px 10px;
+  margin: 3px;
+  align-items: center;
+  gap: 10px;
+}
+.lca-viz-up-down-btn-container-text {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+}
+.lca-viz-up-down-btn {
+  padding: 0px 6px 0px 6px;
+  box-shadow: 0px 0.5px 3px 0px rgba(0, 0, 0, 0.25);
+  line-height: 1.2;
+}
+.lca-viz-active {
+  cursor: pointer;
+  background-color: white;
+  color: #39805F;
+}
+.lca-viz-active:hover {
+  background-color: #ddf2e8;
+  transition: 0.5s all;
+}
+.lca-viz-inactive {
+  cursor: not-allowed;
+  background-color: #F5F5F5;
+  color: grey;
+}
+.lca-viz-inactive-st {
+  background-color: #F5F5F5;
+}
+.lca-viz-active-st {
+  background-color: white;
+}
+.lca-viz-up-down-btn-container .lca-viz-up-down-btn svg {
+  width: 0.7em;
+  height: 0.7em;
+}
+.lca-viz-eye-off, .lca-viz-eye-on {
+  color: #39805F;
+  padding: 5px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.lca-viz-eye-off {
+  background-color: #F5F5F5;
+}
+.lca-viz-em-regular {
+  width: 1em;
+  height: 1em;
+}
+.lca-viz-display-chart-btn {
+  width: 1.5em;
+  height: 1.5em;
+} */
+/* * CSS Rule for the up and down btn ONLY */
+
+
+
+
+/* * CSS Rule for the NEW up-and-down btn ONLY */
+.lca-viz-param {
+  justify-content: space-between;
+  background-color: #EEF2F0;
+  padding-left: 12px;
+  padding-right: 12px;
+}
+.lca-viz-param-container > * {
+  margin-top: 12px;
+}
+.lca-viz-param-fill {
+  justify-content: space-between;
+  background-color: #EEF2F0;
+  padding-left: 16px;
+  padding-right: 16px;
+}
+.lca-viz-special-text-container-2 {
+  display: inline-flex;
+  align-items: center;
+  padding: 2px;
+  column-gap: 4px;
+  user-select: none
+}
+.lca-viz-special-text-2 {
+  display: flex;
+  border-radius: 5px;
+  padding: 8px;
+  margin: 4px;
+  align-items: center;
+  gap: 10px;
+}
+.lca-viz-special-text-intext {
+  display: flex;
+  outline: 2px solid #39805F;
+  border-radius: 5px;
+  padding: 5px 5px 5px 10px;
+  margin: 4px;
+  align-items: center;
+  gap: 10px;
+}
+.lca-viz-up-down-btn-container {
+  display: flex;
+  flex-direction: row;
+  column-gap: 8px;
+}
+.lca-viz-up-down-btn-container-intext {
+  display: flex;
+  flex-direction: column;
+  row-gap: 3px;
+}
+.lca-viz-up-down-btn {
+  padding: 0px 6px 0px 6px;
+  box-shadow: 0px 0.5px 3px 0px rgba(0, 0, 0, 0.25);
+}
+.lca-viz-active {
+  cursor: pointer;
+  background-color: white;
+  color: #39805F;
+}
+.lca-viz-active:hover {
+  background-color: #E2EBE7;
+  transition: 0.5s all;
+}
+.lca-viz-inactive {
+  cursor: not-allowed;
+  background-color: #F5F5F5;
+  color: grey;
+}
+.lca-viz-inactive-st {
+  background-color: #F5F5F5;
+}
+.lca-viz-active-st {
+  background-color: white;
+}
+.lca-viz-up-down-btn-container .lca-viz-up-down-btn svg, .lca-viz-up-down-btn-container-intext .lca-viz-up-down-btn svg {
+  width: 0.7em;
+  height: 0.7em;
+}
+.lca-viz-eye-off, .lca-viz-eye-on {
+  color: #39805F;
+  padding: 5px;
+  box-shadow: 0px 1px 4px 0px rgba(0, 0, 0, 0.25);
+  border-radius: 5px;
+  cursor: pointer;
+}
+.lca-viz-eye-off {
+  background-color: #F5F5F5;
+}
+.lca-viz-em-regular {
+  width: 1em;
+  height: 1em;
+}
+.lca-viz-display-chart-btn {
+  width: 1.5em;
+  height: 1.5em;
+}
+/* * CSS Rule for the up and down btn ONLY */
