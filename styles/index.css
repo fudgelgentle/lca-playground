@@ -27,6 +27,16 @@ body {
   display: flex;
   align-items: center;
 }
+.flex-stretch {
+  display: flex;
+  align-items: stretch;
+}
+.lca-viz-space-between {
+  justify-content: space-between;
+}
+.lca-viz-justify-center {
+  justify-content: center;
+}
 .cg-8 {
   column-gap: 8px;
 }
@@ -47,6 +57,8 @@ body {
   /* pointer-events: none; */
   max-width: 600px;
   padding-top: 64px; /* Add enough padding for the header */
+  transition: all 0.5s;
+  overflow: hidden;
 }
 #lca-viz-carbon-chart {
   max-width: 420px;
@@ -64,6 +76,25 @@ body {
   -ms-user-select: none;
   user-select: none;
   text-decoration: underline dotted;
+}
+.lca-viz-parameter-text {
+  border: none;
+  outline: none;
+  background: #E2EBE7;
+  font-size: inherit;
+  color: inherit;
+  border-radius: 2px;
+  text-align: center;
+  width: 3em;
+  font-family: "Lexend", sans-serif;
+}
+.lca-viz-parameter-text::-webkit-inner-spin-button,
+.lca-viz-parameter-text::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+.lca-viz-parameter-text[type=number] {
+  -moz-appearance: textfield;
 }
 #lca-viz-close-map {
 }
@@ -189,6 +220,39 @@ section {
 
 #highlight-text {
   color: #023047;
+}
+
+.hidden {
+  display: none !important;
+}
+.hidden-a {
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  height: 0;
+  transition: all 0.5s ease-in-out;
+  pointer-events: none;
+}
+.visible-a {
+  opacity: 1;
+  transform: translateY(0);
+  transition: all 0.5s;
+  height: auto;
+  pointer-events: auto;
+}
+.hidden-b {
+  display: none;
+  opacity: 0;
+  transform: translateX(20px);
+  transition: all 0.5s;
+}
+.visible-b {
+  opacity: 1;
+  transform: translateX(0px);
+  transition: all 0.5s;
+}
+.hidden {
+  display: none !important;
 }
 
 
@@ -338,8 +402,21 @@ section {
 .pd-8 {
   padding: 8px;
 }
+.fz-12 {
+  font-size: 12px;
+}
 .fz-16 {
   font-size: 16px;
+}
+
+.mt-4 {
+  margin-top: 4px;
+}
+.mt-8 {
+  margin-top: 8px;
+}
+.mt-12 {
+  margin-top: 12px;
 }
 
 
@@ -563,7 +640,7 @@ section {
   padding-left: 12px;
   padding-right: 12px;
 }
-.lca-viz-param-container > * {
+.lca-viz-ratio-section > *, .lca-viz-independent-section > *, .lca-viz-processes-section > * {
   margin-top: 12px;
 }
 .lca-viz-param-fill {
@@ -653,3 +730,105 @@ section {
   height: 1.5em;
 }
 /* * CSS Rule for the up and down btn ONLY */
+
+
+
+/* & CSS Rule for Ratio part */
+.lca-viz-ratio-container {
+  position: relative;
+  outline: 1px solid #52B788;
+}
+.lca-viz-ratio-text {
+  /* top, right, bottom, left */
+  padding: 4px 8px 4px 8px;
+}
+.lca-viz-text-source {
+  color: #575757;
+  margin-left: 4px;
+}
+.lca-viz-empty-space {
+  width: 100px;
+}
+.lca-viz-ratio-control-container {
+}
+.lca-viz-ratio-control {
+  text-align: center;
+  height: 100px;
+}
+.control-section {
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bg-eef2f0 {
+  background-color: #EEF2F0;
+}
+.bg-d2ead7 {
+  background-color: #D2EAD7;
+}
+
+.lca-viz-param-toggle-off > * {
+  margin-top: 12px;
+}
+
+.lca-viz-param-toggle-on {
+  width: 0;
+  transition: width 0.5s ease;
+}
+.lca-viz-ratio-detail-text {
+  height: 0px;
+  transition: height 0.5s ease;
+}
+
+  /* *CSS Rule for toggle switch */
+  .lca-viz-toggle {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+  }
+  .lca-viz-toggle-container {
+    position: relative;
+    width: 32px;
+    height: 13.5px;
+  }
+  .lca-viz-toggle-checkbox {
+    display: none;
+  }
+  .lca-viz-toggle-label {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+    outline: 1px solid #52B788;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  .lca-viz-toggle-label::after {
+    content: "";
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 10px;
+    height: 10px;
+    background-color: #52B788;
+    border-radius: 50%;
+    transition: transform 0.3s;
+  }
+  .lca-viz-toggle-checkbox:checked + .lca-viz-toggle-label {
+    background-color: #D3EDE5;
+    outline: none;
+  }
+  .lca-viz-toggle-checkbox:checked + .lca-viz-toggle-label::after {
+    transform: translateX(17px);
+  }
+  /* *CSS Rule for toggle switch */
+
+/* & CSS Rule for Ratio part */
+
+.lca-viz-block {
+  display: block;
+}
